@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>KanekiBot - Staff</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       height: 100%;
       font-family: 'Poppins', sans-serif;
-      background: #000;
       overflow: hidden;
+      background: #000;
     }
 
-    body {
-      color: #fff;
+    /* 🔥 Fondo animado tipo cian-rojo */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(-45deg, #000000, #1b1b1b, #00ffe1, #ff0059);
+      background-size: 400% 400%;
+      animation: backgroundAnimation 15s ease infinite;
+      z-index: -1;
     }
 
+    @keyframes backgroundAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Precarga */
     #preloader {
       position: fixed;
       width: 100%;
@@ -43,14 +58,6 @@
       100% { opacity: 0.4; }
     }
 
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      z-index: -1;
-    }
-
     .overlay {
       display: none;
       flex-direction: column;
@@ -60,6 +67,7 @@
       text-align: center;
       padding: 2rem;
       z-index: 2;
+      position: relative;
     }
 
     h1 {
@@ -133,15 +141,12 @@
 </head>
 <body>
 
-  <!-- 🌌 Fondo animado -->
-  <div id="particles-js"></div>
-
-  <!-- ⏳ Zona de carga -->
+  <!-- Carga -->
   <div id="preloader">
     <h2>⚡ Pronto a entrar a Kaneki Staff...</h2>
   </div>
 
-  <!-- 👁️ Contenido principal -->
+  <!-- Contenido -->
   <div class="overlay" id="mainContent">
     <h1>⚡ Kaneki Staff</h1>
 
@@ -158,38 +163,12 @@
     <footer>&copy; 2025 KanekiBot — Todos los derechos reservados.</footer>
   </div>
 
-  <!-- 🥷 Botón Ninja -->
+  <!-- Ninja -->
   <button class="ninja-btn" onclick="likeNinja(event)"></button>
   <div class="star" id="star">⭐</div>
 
-  <!-- 🧠 Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- Script -->
   <script>
-    // Partículas
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": ["#00ffe1", "#ff003c", "#ffffff"] },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.6, "random": true },
-        "size": { "value": 3, "random": true },
-        "line_linked": { "enable": true, "distance": 100, "color": "#666", "opacity": 0.4, "width": 1 },
-        "move": { "enable": true, "speed": 1.5 }
-      },
-      "interactivity": {
-        "events": {
-          "onhover": { "enable": true, "mode": "repulse" },
-          "onclick": { "enable": true, "mode": "push" }
-        },
-        "modes": {
-          "repulse": { "distance": 100 },
-          "push": { "particles_nb": 2 }
-        }
-      },
-      "retina_detect": true
-    });
-
-    // Precarga
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('preloader').style.display = 'none';
@@ -197,7 +176,6 @@
       }, 2500);
     });
 
-    // Contadores
     let visitCount = localStorage.getItem('kaneki_visits') || 0;
     visitCount++;
     localStorage.setItem('kaneki_visits', visitCount);
@@ -222,6 +200,5 @@
       }, 800);
     }
   </script>
-
 </body>
 </html>

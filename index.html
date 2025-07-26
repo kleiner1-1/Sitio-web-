@@ -6,31 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
+      margin: 0;
+      padding: 0;
       height: 100%;
-      font-family: 'Poppins', sans-serif;
       background: #000;
+      font-family: 'Poppins', sans-serif;
       overflow: hidden;
+      color: white;
     }
-    body { color: #fff; }
 
     #preloader {
       position: fixed;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       background: #000;
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
-      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
     }
 
     #preloader h2 {
-      color: #00ffe1;
-      font-size: 1.8rem;
-      text-shadow: 0 0 15px #00ffe1;
+      font-size: 2rem;
+      color: #ff0059;
+      text-shadow: 0 0 15px #ff0059;
       animation: pulse 2s infinite;
     }
 
@@ -44,253 +46,37 @@
       position: fixed;
       width: 100%;
       height: 100%;
-      animation: fondoPulse 3.5s ease-in-out infinite;
-      z-index: -2;
-    }
-
-    @keyframes fondoPulse {
-      0% { transform: scale(1); opacity: 0.9; filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.2)); }
-      50% { transform: scale(1.02); opacity: 1; filter: drop-shadow(0 0 25px rgba(255, 0, 50, 0.3)); }
-      100% { transform: scale(1); opacity: 0.9; filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.2)); }
-    }
-
-    .fondo-red {
       background: radial-gradient(circle at 30% 30%, rgba(255,0,50,0.4), transparent 50%),
-                  radial-gradient(circle at 70% 70%, rgba(200,0,0,0.2), transparent 50%);
-    }
-
-    .fondo-blue {
-      background: radial-gradient(circle at 30% 30%, rgba(0,100,255,0.4), transparent 50%),
-                  radial-gradient(circle at 70% 70%, rgba(0,0,139,0.2), transparent 50%);
-    }
-
-    .fondo-purple {
-      background: radial-gradient(circle at 30% 30%, rgba(160,32,240,0.4), transparent 50%),
-                  radial-gradient(circle at 70% 70%, rgba(90,0,120,0.2), transparent 50%);
-    }
-
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: #000;
+                  radial-gradient(circle at 70% 70%, rgba(0,0,139,0.3), transparent 50%);
+      animation: fondoPulse 3.5s ease-in-out infinite;
       z-index: -1;
     }
 
-    .overlay {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      text-align: center;
-      padding: 2rem;
-      z-index: 2;
-    }
-
-    h1 {
-      font-size: 3rem;
-      color: #00ffe1;
-      text-shadow: 0 0 10px #00ffe1;
-      margin-bottom: 1.5rem;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-
-    .buttons a {
-      background: linear-gradient(135deg, #00ffe1, #ff0059);
-      padding: 1rem 1.6rem;
-      color: #000;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 50px;
-      box-shadow: 0 0 10px #00ffe1;
-      transition: 0.3s;
-    }
-
-    .buttons a:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #ff0040;
-    }
-
-    .counter-area {
-      font-size: 1rem;
-      color: #ccc;
-    }
-
-    .ninja-btn {
-      position: absolute;
-      bottom: 80px;
-      right: 30px;
-      width: 70px;
-      height: 70px;
-      background: url('https://cdn-icons-png.flaticon.com/512/1055/1055646.png') no-repeat center/contain;
-      border: none;
-      cursor: pointer;
-      animation: floatNinja 2.5s ease-in-out infinite;
-    }
-
-    @keyframes floatNinja {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .star {
-      position: absolute;
-      font-size: 2rem;
-      color: gold;
-      opacity: 0;
-      transition: opacity 0.3s, transform 0.5s;
-    }
-
-    footer {
-      position: absolute;
-      bottom: 10px;
-      color: #888;
-      font-size: 0.85rem;
+    @keyframes fondoPulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.02); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.8; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Fondos -->
-  <div id="particles-js"></div>
   <div class="fondo-efecto"></div>
 
-  <!-- Preloader con música -->
   <div id="preloader">
-    <h2>⚡ Pronto a entrar a Kaneki Staff...</h2>
+    <h2>⚡ Cargando KanekiBot...</h2>
     <audio id="preloaderMusic" autoplay loop>
       <source src="https://files.freemusicarchive.org/storage-new/tracks/BzS9tEKI4NUAonMufKjYCHxMVhCxkD14r2pxWv4Y.mp3" type="audio/mpeg">
     </audio>
   </div>
 
-  <!-- Contenido principal -->
-  <div class="overlay" id="mainContent">
-    <h1>⚡ Kaneki Staff</h1>
-
-    <div class="buttons">
-      <a href="https://wa.me/1234567890?text=Hola%20KanekiBot" target="_blank">💌 Contactar</a>
-      <a href="https://chat.whatsapp.com/INVITACION-GRUPO" target="_blank">📥 Invitar</a>
-      <a href="https://whatsapp.com/channel/kaneki-channel-id" target="_blank">📺 Canal</a>
-    </div>
-
-    <div class="counter-area">
-      👁️ Visitas: <span id="visitorCount">0</span> &nbsp;&nbsp;|&nbsp;&nbsp; ⭐ Me gusta: <span id="likeCount">0</span>
-    </div>
-
-    <footer>&copy; 2025 KanekiBot — Todos los derechos reservados.</footer>
-  </div>
-
-  <!-- Botón Ninja -->
-  <button class="ninja-btn" onclick="likeNinja(event)"></button>
-  <div class="star" id="star">⭐</div>
-
-  <!-- Música de fondo aleatoria -->
-  <audio id="mainMusic" loop></audio>
-
-  <!-- Sonido ninja -->
-  <audio id="ninjaSound" preload="auto">
-    <source src="https://freesound.org/data/previews/514/514645_10290594-lq.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    const kanekiTracks = [
-      { src: "https://files.freemusicarchive.org/storage-new/tracks/lF1YkCqaaIot6VbMrjpDCOyPyZJvK5gOW0zMWFzF.mp3", theme: "fondo-red" },
-      { src: "https://files.freemusicarchive.org/storage-new/tracks/hIYQoVJ6K0UMRxEYeaotMbWLHqMNGrFBYpVx1J2t.mp3", theme: "fondo-blue" },
-      { src: "https://files.freemusicarchive.org/storage-new/tracks/BtynniWUw7PeMs0gxEtSQaRyYqN5JKrX0z3nEoFa.mp3", theme: "fondo-purple" }
-    ];
-
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 120 },
-        "color": { "value": ["#8a0303", "#00bfff", "#aaaaaa"] },
-        "shape": { "type": "triangle" },
-        "opacity": { "value": 0.4, "random": true },
-        "size": { "value": 2.5, "random": true },
-        "line_linked": {
-          "enable": true,
-          "color": "#880088",
-          "opacity": 0.3,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 1.8,
-          "direction": "none",
-          "random": true,
-          "straight": false,
-          "out_mode": "out"
-        }
-      },
-      "interactivity": {
-        "events": {
-          "onhover": { "enable": true, "mode": "grab" },
-          "onclick": { "enable": true, "mode": "push" }
-        },
-        "modes": {
-          "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } },
-          "push": { "particles_nb": 3 }
-        }
-      },
-      "retina_detect": true
-    });
-
+    // Precarga básica con música
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('preloader').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'flex';
-
-        const ambient = document.getElementById('preloaderMusic');
-        const mainTrack = document.getElementById('mainMusic');
-        const fondoDiv = document.querySelector('.fondo-efecto');
-
-        if (ambient) ambient.pause();
-
-        const track = kanekiTracks[Math.floor(Math.random() * kanekiTracks.length)];
-        mainTrack.src = track.src;
-        mainTrack.volume = 0.3;
-        mainTrack.play();
-
-        fondoDiv.classList.remove('fondo-red', 'fondo-blue', 'fondo-purple');
-        fondoDiv.classList.add(track.theme);
-      }, 2500);
+      }, 3000);
     });
-
-    let visitCount = localStorage.getItem('kaneki_visits') || 0;
-    visitCount++;
-    localStorage.setItem('kaneki_visits', visitCount);
-    document.getElementById('visitorCount').textContent = visitCount;
-
-    let likes = localStorage.getItem('kaneki_likes') || 0;
-    document.getElementById('likeCount').textContent = likes;
-
-    function likeNinja(e) {
-      likes++;
-      localStorage.setItem('kaneki_likes', likes);
-      document.getElementById('likeCount').textContent = likes;
-
-      const star = document.getElementById('star');
-      star.style.left = `${e.clientX - 10}px`;
-      star.style.top = `${e.clientY - 30}px`;
-      star.style.opacity = 1;
-      star.style.transform = 'translateY(-50px)';
-      setTimeout(() => {
-        star.style.opacity = 0;
-        star.style.transform = 'translateY(0)';
-      }, 800);
-
-      const ninjaSound = document.getElementById('ninjaSound');
-      if (ninjaSound) ninjaSound.play();
-    }
   </script>
 
 </body>

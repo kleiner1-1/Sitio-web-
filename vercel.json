@@ -3,21 +3,13 @@
   "builds": [
     {
       "src": "index.html",
-      "use": "@vercel/static-build",
-      "config": {
-        "outputDirectory": "public"
-      }
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/(.*\\.(?:html|css|js|png|svg|mp3|json))$",
-      "dest": "/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/$1"
     }
-  ],
-  "outputDirectory": "public"
+  ]
 }

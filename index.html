@@ -11,28 +11,49 @@
       height: 100%;
       font-family: 'Poppins', sans-serif;
       overflow: hidden;
-      background: #000;
+      background: #0f0f1a;
     }
 
-    /* 🌌 Fondo animado principal */
+    /* 🌌 Fondo dinámico principal */
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(-45deg, #000000, #1b1b1b, #00ffe1, #ff0059);
-      background-size: 400% 400%;
-      animation: backgroundAnimation 15s ease infinite;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at top left, #1a1a2e, #0f3460, #16213e);
+      overflow: hidden;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(0, 255, 225, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(255, 0, 89, 0.1) 0%, transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 80%);
+      background-repeat: no-repeat;
+      animation: floatGlow 30s linear infinite;
       z-index: -1;
     }
 
-    @keyframes backgroundAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes floatGlow {
+      0% {
+        background-position: 20% 30%, 80% 70%, 50% 50%;
+      }
+      50% {
+        background-position: 22% 32%, 78% 68%, 52% 48%;
+      }
+      100% {
+        background-position: 20% 30%, 80% 70%, 50% 50%;
+      }
     }
 
-    /* 🔄 Preloader mejorado */
+    /* 🔄 Preloader */
     #preloader {
       position: fixed;
       width: 100%;
@@ -83,7 +104,7 @@
       50% { opacity: 1; }
     }
 
-    /* 🧩 Contenido principal */
+    /* 🌟 Contenido principal */
     .overlay {
       display: none;
       flex-direction: column;
@@ -167,13 +188,13 @@
 </head>
 <body>
 
-  <!-- 🔄 Zona de carga -->
+  <!-- ⏳ Precarga -->
   <div id="preloader">
     <div class="loader-circle"></div>
     <h2>⚡ Entrando al universo Kaneki Staff...</h2>
   </div>
 
-  <!-- 👁️ Contenido principal -->
+  <!-- 🧠 Contenido principal -->
   <div class="overlay" id="mainContent">
     <h1>⚡ Kaneki Staff</h1>
 

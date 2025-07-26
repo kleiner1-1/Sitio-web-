@@ -15,7 +15,6 @@
       overflow: hidden;
     }
 
-    /* Preloader */
     #preloader {
       position: fixed;
       width: 100%;
@@ -41,17 +40,15 @@
       100% { opacity: 0.4; }
     }
 
-    /* Canvas rayos */
     canvas {
       position: fixed;
       top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       z-index: -1;
       background: #000;
     }
 
-    /* Contenido principal */
     .overlay {
       display: none;
       flex-direction: column;
@@ -134,15 +131,12 @@
 </head>
 <body>
 
-  <!-- Preloader -->
   <div id="preloader">
     <h2>⚡ Pronto a entrar a Kaneki Staff...</h2>
   </div>
 
-  <!-- Fondo de rayos -->
   <canvas id="lightningCanvas"></canvas>
 
-  <!-- Contenido principal -->
   <div class="overlay" id="mainContent">
     <h1>⚡ Kaneki Staff</h1>
 
@@ -159,19 +153,17 @@
     <footer>&copy; 2025 KanekiBot — Todos los derechos reservados.</footer>
   </div>
 
-  <!-- Botón ninja -->
   <button class="ninja-btn" onclick="likeNinja(event)"></button>
   <div class="star" id="star">⭐</div>
 
-  <!-- Script funcional -->
   <script>
-    // Preloader
-    window.onload = function () {
+    // Mostrar contenido después de precarga
+    window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('preloader').style.display = 'none';
         document.getElementById('mainContent').style.display = 'flex';
       }, 2500);
-    };
+    });
 
     // Contador de visitas
     let visitCount = localStorage.getItem('kaneki_visits') || 0;
@@ -179,7 +171,7 @@
     localStorage.setItem('kaneki_visits', visitCount);
     document.getElementById('visitorCount').textContent = visitCount;
 
-    // Contador de likes
+    // Likes
     let likes = localStorage.getItem('kaneki_likes') || 0;
     document.getElementById('likeCount').textContent = likes;
 
@@ -199,7 +191,7 @@
       }, 800);
     }
 
-    // Fondo de rayos
+    // Fondo rayos (canvas)
     const canvas = document.getElementById("lightningCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -207,36 +199,40 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-    window.addEventListener("resize", resizeCanvas);
+
     resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
-    function drawLightning() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (let i = 0; i < 5; i++) {
-        let x = Math.random() * canvas.width;
-        let y = 0;
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-
-        for (let j = 0; j < 15; j++) {
-          x += Math.random() * 40 - 20;
-          y += Math.random() * 40;
-          ctx.lineTo(x, y);
-        }
-
-        const colors = ["#00ffe1", "#ff0059", "#222"];
-        const color = colors[Math.floor(Math.random() * colors.length)];
-
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 2;
-        ctx.shadowColor = color;
-        ctx.shadowBlur = 10;
-        ctx.stroke();
+    function drawRay(x, y, length, angle, color) {
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      for (let i = 0; i < length; i++) {
+        x += Math.cos(angle + (Math.random() - 0.5)) * 10;
+        y += Math.sin(angle + (Math.random() - 0.5)) * 10;
+        ctx.lineTo(x, y);
       }
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 15;
+      ctx.stroke();
     }
 
-    setInterval(drawLightning, 300);
+    function animateLightning() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const colors = ['#00ffe1', '#ff003c', '#222'];
+
+      for (let i = 0; i < 4; i++) {
+        const x = Math.random() * canvas.width;
+        const angle = Math.PI / 2;
+        drawRay(x, 0, 10 + Math.random() * 5, angle, colors[Math.floor(Math.random() * colors.length)]);
+      }
+
+      requestAnimationFrame(animateLightning);
+    }
+
+    animateLightning();
   </script>
 </body>
 </html>

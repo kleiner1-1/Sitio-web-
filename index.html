@@ -14,46 +14,16 @@
       background: #0f0f1a;
     }
 
-    /* 🌌 Fondo dinámico principal */
-    body::before {
-      content: "";
+    /* Fondo de partículas */
+    #particles-js {
       position: fixed;
-      top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(ellipse at top left, #1a1a2e, #0f3460, #16213e);
-      overflow: hidden;
-      z-index: -2;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-image:
-        radial-gradient(circle at 20% 30%, rgba(0, 255, 225, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 80% 70%, rgba(255, 0, 89, 0.1) 0%, transparent 60%),
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 80%);
-      background-repeat: no-repeat;
-      animation: floatGlow 30s linear infinite;
+      background: radial-gradient(ellipse at top, #0d0d25, #05010a);
       z-index: -1;
     }
 
-    @keyframes floatGlow {
-      0% {
-        background-position: 20% 30%, 80% 70%, 50% 50%;
-      }
-      50% {
-        background-position: 22% 32%, 78% 68%, 52% 48%;
-      }
-      100% {
-        background-position: 20% 30%, 80% 70%, 50% 50%;
-      }
-    }
-
-    /* 🔄 Preloader */
+    /* Preloader */
     #preloader {
       position: fixed;
       width: 100%;
@@ -104,7 +74,7 @@
       50% { opacity: 1; }
     }
 
-    /* 🌟 Contenido principal */
+    /* Contenido principal */
     .overlay {
       display: none;
       flex-direction: column;
@@ -188,13 +158,16 @@
 </head>
 <body>
 
-  <!-- ⏳ Precarga -->
+  <!-- Fondo animado con partículas -->
+  <div id="particles-js"></div>
+
+  <!-- Zona de carga -->
   <div id="preloader">
     <div class="loader-circle"></div>
     <h2>⚡ Entrando al universo Kaneki Staff...</h2>
   </div>
 
-  <!-- 🧠 Contenido principal -->
+  <!-- Contenido principal -->
   <div class="overlay" id="mainContent">
     <h1>⚡ Kaneki Staff</h1>
 
@@ -211,13 +184,44 @@
     <footer>&copy; 2025 KanekiBot — Todos los derechos reservados.</footer>
   </div>
 
-  <!-- 🥷 Botón Ninja -->
+  <!-- Botón Ninja -->
   <button class="ninja-btn" onclick="likeNinja(event)"></button>
   <div class="star" id="star">⭐</div>
 
-  <!-- 📜 Script funcional -->
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // Mostrar contenido después de precarga
+    // Activar partículas
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: ["#00ffe1", "#ff0059", "#ffffff"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.6, random: true },
+        size: { value: 4, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00ffe1",
+          opacity: 0.3,
+          width: 1,
+        },
+        move: { enable: true, speed: 2 }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Preloader
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('preloader').style.display = 'none';

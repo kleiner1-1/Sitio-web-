@@ -16,14 +16,14 @@
       overflow: hidden;
     }
 
-    /* 🎬 Fondo animado principal */
+    /* 🎬 Fondo animado principal con diseño y color más vivo */
     .main-bg {
       position: fixed;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #1b1b1b, #2b2b2b);
-      background-size: 400% 400%;
-      animation: animateBg 15s ease infinite;
+      background: linear-gradient(135deg, #2c2c54, #1b1b3a, #3c3c8a);
+      background-size: 600% 600%;
+      animation: animateBg 20s ease infinite;
       z-index: -1;
     }
 
@@ -33,12 +33,12 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* ⚡ Preloader estilizado */
+    /* ⚡ Preloader mejorado con diseño más estético */
     #preloader {
       position: fixed;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, #0e0e0e 0%, #000000 100%);
+      background: radial-gradient(circle, #1b1b3a, #0c0c20);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -48,8 +48,8 @@
     }
 
     @keyframes pulseBg {
-      0%, 100% { background-color: #000; }
-      50% { background-color: #111; }
+      0%, 100% { background-color: #1a1a40; }
+      50% { background-color: #2e2e6e; }
     }
 
     .loader-circle {
@@ -144,7 +144,6 @@
   </div>
 
   <script>
-    // Esperar que cargue la página
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('preloader').style.display = 'none';

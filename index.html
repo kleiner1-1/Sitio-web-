@@ -4,77 +4,82 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KanekiBot - Staff</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     html, body {
       height: 100%;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Arial', sans-serif;
       overflow: hidden;
     }
-    body.dark-mode { background-color: #101010; color: #fff; }
 
+    /* 🎬 Fondo animado principal */
     .main-bg {
       position: fixed;
       width: 100%;
       height: 100%;
-      background: url("https://i.ibb.co/GJr5dPQ/kaneki-bg.jpg") center center / cover no-repeat;
-      z-index: -3;
-      filter: brightness(0.5) contrast(1.2);
-      animation: slowZoom 40s ease-in-out infinite alternate;
-    }
-    @keyframes slowZoom {
-      from { transform: scale(1); }
-      to { transform: scale(1.05); }
+      background: linear-gradient(135deg, #1b1b1b, #2b2b2b);
+      background-size: 400% 400%;
+      animation: animateBg 15s ease infinite;
+      z-index: -1;
     }
 
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
+    @keyframes animateBg {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
+    /* ⚡ Preloader estilizado */
     #preloader {
       position: fixed;
       width: 100%;
       height: 100%;
-      background: #000;
+      background: radial-gradient(circle, #0e0e0e 0%, #000000 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1000;
       flex-direction: column;
-      text-align: center;
-    }
-    #preloader video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-    .loader-circle {
-      width: 70px;
-      height: 70px;
-      border: 5px solid #00ffe1;
-      border-top: 5px solid #ff0059;
-      border-radius: 50%;
-      animation: spin 1.5s linear infinite;
-      margin-bottom: 20px;
-    }
-    @keyframes spin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
-    #preloader h2 {
-      color: #fff;
-      font-size: 1.4rem;
-      animation: fadeText 2s ease-in-out infinite;
-    }
-    @keyframes fadeText {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
+      z-index: 1000;
+      animation: pulseBg 4s ease-in-out infinite;
     }
 
+    @keyframes pulseBg {
+      0%, 100% { background-color: #000; }
+      50% { background-color: #111; }
+    }
+
+    .loader-circle {
+      width: 80px;
+      height: 80px;
+      border: 6px solid #00ffe1;
+      border-top: 6px solid #ff0059;
+      border-radius: 50%;
+      animation: spin 1.2s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #preloader h2 {
+      font-size: 1.4rem;
+      color: #00ffe1;
+      text-shadow: 0 0 10px #ff0059;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+
+    /* 🧩 Página principal */
     .overlay {
       display: none;
       flex-direction: column;
@@ -83,16 +88,26 @@
       height: 100%;
       text-align: center;
       padding: 2rem;
-      z-index: 10;
       position: relative;
+      z-index: 10;
+      color: #fff;
     }
+
     h1 {
       font-size: 3rem;
       color: #00ffe1;
       text-shadow: 0 0 10px #00ffe1;
       margin-bottom: 1.5rem;
     }
-    .buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
     .buttons a {
       background: linear-gradient(135deg, #00ffe1, #ff0059);
       padding: 1rem 1.6rem;
@@ -103,183 +118,40 @@
       box-shadow: 0 0 10px #00ffe1;
       transition: 0.3s;
     }
-    .buttons a:hover { transform: scale(1.05); box-shadow: 0 0 15px #ff0040; }
 
-    .info-row { color: #fff; display: flex; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
-    .vote-box { margin: 1rem 0; color: #fff; }
-    .vote-box button {
-      margin: 0.3rem;
-      padding: 0.6rem 1rem;
-      border: none;
-      border-radius: 20px;
-      background: #fff;
-      color: #111;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .lang-toggle, .dark-toggle { margin: 0.5rem; font-size: 0.9rem; color: #ccc; }
-
-    .ninja-btn {
-      position: absolute;
-      bottom: 80px;
-      right: 30px;
-      width: 70px;
-      height: 70px;
-      background: url('https://cdn-icons-png.flaticon.com/512/1055/1055646.png') no-repeat center/contain;
-      border: none;
-      cursor: pointer;
-      animation: floatNinja 2.5s ease-in-out infinite;
-      z-index: 20;
-    }
-    @keyframes floatNinja {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .star {
-      position: absolute;
-      font-size: 2rem;
-      color: gold;
-      opacity: 0;
-      transition: opacity 0.3s, transform 0.5s;
-      z-index: 999;
-    }
-    footer {
-      position: absolute;
-      bottom: 10px;
-      color: #ccc;
-      font-size: 0.85rem;
+    .buttons a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ff0040;
     }
   </style>
 </head>
 <body>
+
   <div class="main-bg"></div>
-  <div id="particles-js"></div>
+
   <div id="preloader">
-    <video autoplay muted loop playsinline>
-      <source src="https://files.catbox.moe/qwvtjz.mp4" type="video/mp4" />
-    </video>
     <div class="loader-circle"></div>
-    <h2>⚡ Entrando al universo Kaneki Staff...</h2>
+    <h2>⚡ Pronto a entrar a Kaneki Staff...</h2>
   </div>
 
   <div class="overlay" id="mainContent">
     <h1>⚡ Kaneki Staff</h1>
     <div class="buttons">
-      <a href="https://wa.me/1234567890">💌 Contactar</a>
-      <a href="https://chat.whatsapp.com/INVITACION">📥 Invitar</a>
-      <a href="https://whatsapp.com/channel/Kaneki">📺 Canal</a>
+      <a href="#">💌 Contactar</a>
+      <a href="#">📥 Invitar</a>
+      <a href="#">📺 Canal</a>
     </div>
-    <div class="info-row">
-      <div>👁️ Visitas: <span id="visitorCount">0</span></div>
-      <div>⭐ Me gusta: <span id="likeCount">0</span></div>
-      <div>📅 <span id="dateTime"></span></div>
-    </div>
-    <div class="vote-box">
-      <p>¿Te gustó esta página?</p>
-      <button onclick="vote('yes')">👍 Sí</button>
-      <button onclick="vote('no')">👎 No</button>
-      <div id="voteResult"></div>
-    </div>
-    <div class="lang-toggle">
-      <label>🌐 <input type="checkbox" id="langSwitch" onchange="switchLang()" /> <span id="langLabel">Español</span></label>
-    </div>
-    <div class="dark-toggle">
-      <label>🌗 <input type="checkbox" id="darkSwitch" onchange="toggleDarkMode()" /> <span id="darkLabel">Modo Claro</span></label>
-    </div>
-    <footer>&copy; 2025 KanekiBot — Todos los derechos reservados.</footer>
   </div>
 
-  <button class="ninja-btn" onclick="likeNinja(event)"></button>
-  <div class="star" id="star">⭐</div>
-  <audio id="bgmusic" src="https://files.catbox.moe/1k0wbo.mp3" autoplay loop></audio>
-
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
+    // Esperar que cargue la página
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('preloader').style.display = 'none';
         document.getElementById('mainContent').style.display = 'flex';
-      }, 3000);
+      }, 2500);
     });
-
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 60, density: { enable: true, value_area: 800 } },
-        color: { value: ["#00ffe1", "#ff0059", "#ffffff"] },
-        shape: { type: "circle" },
-        opacity: { value: 0.6, random: true },
-        size: { value: 4, random: true },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#00ffe1",
-          opacity: 0.3,
-          width: 1
-        },
-        move: { enable: true, speed: 2 }
-      },
-      interactivity: {
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" }
-        },
-        modes: {
-          repulse: { distance: 100 },
-          push: { particles_nb: 4 }
-        }
-      },
-      retina_detect: true
-    });
-
-    let visitCount = localStorage.getItem('kaneki_visits') || 0;
-    visitCount++;
-    localStorage.setItem('kaneki_visits', visitCount);
-    document.getElementById('visitorCount').textContent = visitCount;
-
-    let likes = localStorage.getItem('kaneki_likes') || 0;
-    document.getElementById('likeCount').textContent = likes;
-
-    function likeNinja(e) {
-      likes++;
-      localStorage.setItem('kaneki_likes', likes);
-      document.getElementById('likeCount').textContent = likes;
-
-      const star = document.getElementById('star');
-      star.style.left = `${e.clientX - 10}px`;
-      star.style.top = `${e.clientY - 30}px`;
-      star.style.opacity = 1;
-      star.style.transform = 'translateY(-50px)';
-      setTimeout(() => {
-        star.style.opacity = 0;
-        star.style.transform = 'translateY(0)';
-      }, 800);
-    }
-
-    function updateDateTime() {
-      const now = new Date();
-      const options = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
-      document.getElementById('dateTime').textContent = now.toLocaleDateString('es-CO', options);
-    }
-    setInterval(updateDateTime, 1000);
-    updateDateTime();
-
-    function vote(option) {
-      const result = document.getElementById('voteResult');
-      result.innerHTML = option === 'yes' ? '¡Gracias por tu voto positivo! 🥳' : '¡Intentaremos mejorar! 💪';
-    }
-
-    function switchLang() {
-      const isChecked = document.getElementById('langSwitch').checked;
-      document.querySelector('h1').textContent = isChecked ? '⚡ Kaneki Staff' : '⚡ Kaneki Staff';
-      document.querySelector('.vote-box p').textContent = isChecked ? 'Did you like this page?' : '¿Te gustó esta página?';
-      document.getElementById('langLabel').textContent = isChecked ? 'English' : 'Español';
-    }
-
-    function toggleDarkMode() {
-      const isDark = document.getElementById('darkSwitch').checked;
-      document.body.classList.toggle('dark-mode', isDark);
-      document.getElementById('darkLabel').textContent = isDark ? 'Modo Oscuro' : 'Modo Claro';
-    }
   </script>
+
 </body>
 </html>

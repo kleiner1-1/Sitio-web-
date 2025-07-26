@@ -17,7 +17,6 @@
       overflow: hidden;
     }
 
-    /* Fondo decorativo */
     .background-decor {
       position: fixed;
       width: 100%;
@@ -35,16 +34,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Rayos */
-    .rayo {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    /* Partículas */
     #particles-js {
       position: fixed;
       width: 100%;
@@ -52,7 +41,6 @@
       z-index: -1;
     }
 
-    /* Precarga */
     #preloader {
       position: fixed;
       width: 100%;
@@ -91,15 +79,91 @@
       0%, 100% { opacity: 0.4; }
       50% { opacity: 1; }
     }
+
+    .overlay {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      padding: 2rem;
+      z-index: 10;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #00ffe1;
+      text-shadow: 0 0 10px #00ffe1;
+      margin-bottom: 1.5rem;
+    }
+
+    .buttons-kaneki {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .buttons-kaneki a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.8rem 1.6rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      background: linear-gradient(135deg, #00ffe1, #ff0059);
+      color: #111;
+      box-shadow: 0 0 12px rgba(0, 255, 225, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .buttons-kaneki a img {
+      width: 22px;
+      height: 22px;
+      filter: drop-shadow(0 0 2px #fff);
+    }
+
+    .buttons-kaneki a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(255, 0, 89, 0.6), 0 0 30px rgba(0, 255, 225, 0.5);
+    }
+
+    body.dark-mode .buttons-kaneki a {
+      background: linear-gradient(135deg, #111, #222);
+      color: #fff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    body.dark-mode .buttons-kaneki a:hover {
+      box-shadow: 0 0 20px rgba(255, 0, 89, 0.4), 0 0 30px rgba(0, 255, 225, 0.3);
+    }
+
+    .info-row {
+      font-size: 1rem;
+      color: #fff;
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      color: #ccc;
+      font-size: 0.85rem;
+    }
   </style>
 </head>
 <body>
 
-<!-- Fondo -->
 <div class="background-decor"></div>
-
-
-<!-- Partículas -->
 <div id="particles-js"></div>
 
 <!-- Precarga -->
@@ -107,33 +171,26 @@
   <div class="loader-circle"></div>
   <h2>⚡ Entrando al universo Kaneki Staff...</h2>
 </div>
-<!-- Contenido principal -->
+
+<!-- Contenido -->
 <div class="overlay" id="mainContent">
   <h1>⚡ Kaneki Staff</h1>
 
+  <!-- ✅ Botones nuevos -->
   <div class="buttons-kaneki">
-  <a href="https://wa.me/1234567890?text=Hola%20KanekiBot" target="_blank" onclick="playClick()">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    💌 Contactar
-  </a>
-
-  <a href="https://chat.whatsapp.com/INVITACION-GRUPO" target="_blank" onclick="playClick()">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    📥 Invitar
-  </a>
-
-  <a href="https://whatsapp.com/channel/kaneki-channel-id" target="_blank" onclick="playClick()">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    📺 Kaneki Canal
-  </a>
-
-  <a href="https://whatsapp.com/channel/miku-channel-id" target="_blank" onclick="playClick()">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    📢 Miku Canal
-  </a>
-</div>
-
-
+    <a href="https://wa.me/1234567890?text=Hola%20KanekiBot" target="_blank" onclick="playClick()">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 💌 Contactar
+    </a>
+    <a href="https://chat.whatsapp.com/INVITACION-GRUPO" target="_blank" onclick="playClick()">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 📥 Invitar
+    </a>
+    <a href="https://whatsapp.com/channel/kaneki-channel-id" target="_blank" onclick="playClick()">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 📺 Kaneki Canal
+    </a>
+    <a href="https://whatsapp.com/channel/miku-channel-id" target="_blank" onclick="playClick()">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 📢 Miku Canal
+    </a>
+  </div>
 
   <div class="info-row">
     <div>👁️ Visitas: <span id="visitorCount">0</span></div>
@@ -141,218 +198,19 @@
     <div>📅 <span id="dateTime"></span></div>
   </div>
 
-  <div class="vote-box">
-    <p>¿Te gustó esta página?</p>
-    <button onclick="vote('yes')">👍 Sí</button>
-    <button onclick="vote('no')">👎 No</button>
-    <div id="voteResult"></div>
-  </div>
-
-  <div class="lang-toggle">
-    <label>
-      🌐 <input type="checkbox" id="langSwitch" onchange="switchLang()" />
-      <span id="langLabel">Español</span>
-    </label>
-  </div>
-
-  <div class="dark-toggle">
-    <label>
-      🌗 <input type="checkbox" id="darkSwitch" onchange="toggleDarkMode()" />
-      <span id="darkLabel">Modo Claro</span>
-    </label>
-  </div>
-
   <footer>&copy; 2025 KanekiBot — Todos los derechos reservados.</footer>
 </div>
-
-<!-- Ninja interactivo -->
-<button class="ninja-btn" onclick="likeNinja(event)"></button>
-<div class="star" id="star">⭐</div>
-
-<!-- Música de fondo -->
-<audio id="bgmusic" src="https://files.catbox.moe/1k0wbo.mp3" autoplay loop></audio>
-<style>
-  .overlay {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    text-align: center;
-    padding: 2rem;
-    z-index: 10;
-    position: relative;
-  }
-
-  h1 {
-    font-size: 3rem;
-    color: #00ffe1;
-    text-shadow: 0 0 10px #00ffe1;
-    margin-bottom: 1.5rem;
-  }
-
-  .buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .buttons a {
-    background: linear-gradient(135deg, #00ffe1, #ff0059);
-    padding: 1rem 1.6rem;
-    color: #000;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 50px;
-    box-shadow: 0 0 10px #00ffe1;
-    transition: 0.3s;
-  }
-
-  .buttons a:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #ff0040;
-  }
-
-  .info-row {
-    font-size: 1rem;
-    color: #fff;
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .vote-box {
-    margin: 1rem 0;
-    color: #fff;
-  }
-
-  .vote-box button {
-    margin: 0.3rem;
-    padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    background: #fff;
-    color: #111;
-    font-weight: bold;
-  }
-
-  .vote-box #voteResult {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .lang-toggle, .dark-toggle {
-    margin: 0.5rem;
-    font-size: 0.9rem;
-    color: #ccc;
-  }
-
-  .ninja-btn {
-    position: absolute;
-    bottom: 80px;
-    right: 30px;
-    width: 70px;
-    height: 70px;
-    background: url('https://cdn-icons-png.flaticon.com/512/1055/1055646.png') no-repeat center/contain;
-    border: none;
-    cursor: pointer;
-    animation: floatNinja 2.5s ease-in-out infinite;
-    z-index: 20;
-  }
-
-  @keyframes floatNinja {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  .star {
-    position: absolute;
-    font-size: 2rem;
-    color: gold;
-    opacity: 0;
-    transition: opacity 0.3s, transform 0.5s;
-    z-index: 999;
-  }
-
-  footer {
-    position: absolute;
-    bottom: 10px;
-    color: #ccc;
-    font-size: 0.85rem;
-  }
-
-  body.dark-mode {
-    background-color: #101010;
-    color: #fff;
-  }
-
-  body.dark-mode .buttons a {
-    background: linear-gradient(135deg, #222, #333);
-    color: #fff;
-  }
-</style>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-  // Preload
+  // Precarga
   window.addEventListener('load', () => {
     setTimeout(() => {
       document.getElementById('preloader').style.display = 'none';
       document.getElementById('mainContent').style.display = 'flex';
     }, 2500);
   });
-  
-  .buttons-kaneki {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem 0;
-}
-
-.buttons-kaneki a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0.8rem 1.6rem;
-  border-radius: 40px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-  background: linear-gradient(135deg, #00ffe1, #ff0059);
-  color: #111;
-  box-shadow: 0 0 12px rgba(0, 255, 225, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.buttons-kaneki a img {
-  width: 22px;
-  height: 22px;
-  filter: drop-shadow(0 0 2px #fff);
-}
-
-.buttons-kaneki a:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 20px rgba(255, 0, 89, 0.6), 0 0 30px rgba(0, 255, 225, 0.5);
-}
-
-body.dark-mode .buttons-kaneki a {
-  background: linear-gradient(135deg, #111, #222);
-  color: #fff;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-body.dark-mode .buttons-kaneki a:hover {
-  box-shadow: 0 0 20px rgba(255, 0, 89, 0.4), 0 0 30px rgba(0, 255, 225, 0.3);
-  }
-    
 
   // Partículas
   particlesJS("particles-js", {
@@ -394,23 +252,7 @@ body.dark-mode .buttons-kaneki a:hover {
   let likes = localStorage.getItem('kaneki_likes') || 0;
   document.getElementById('likeCount').textContent = likes;
 
-  function likeNinja(e) {
-    likes++;
-    localStorage.setItem('kaneki_likes', likes);
-    document.getElementById('likeCount').textContent = likes;
-
-    const star = document.getElementById('star');
-    star.style.left = `${e.clientX - 10}px`;
-    star.style.top = `${e.clientY - 30}px`;
-    star.style.opacity = 1;
-    star.style.transform = 'translateY(-50px)';
-    setTimeout(() => {
-      star.style.opacity = 0;
-      star.style.transform = 'translateY(0)';
-    }, 800);
-  }
-
-  // Fecha y hora en vivo
+  // Fecha y hora
   function updateDateTime() {
     const now = new Date();
     const options = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
@@ -419,26 +261,10 @@ body.dark-mode .buttons-kaneki a:hover {
   setInterval(updateDateTime, 1000);
   updateDateTime();
 
-  // Votación
-  function vote(option) {
-    const result = document.getElementById('voteResult');
-    if (option === 'yes') result.innerHTML = '¡Gracias por tu voto positivo! 🥳';
-    else result.innerHTML = '¡Intentaremos mejorar! 💪';
-  }
-
-  // Idioma
-  function switchLang() {
-    const isChecked = document.getElementById('langSwitch').checked;
-    document.querySelector('h1').textContent = isChecked ? '⚡ Kaneki Staff' : '⚡ Kaneki Staff';
-    document.querySelector('.vote-box p').textContent = isChecked ? 'Did you like this page?' : '¿Te gustó esta página?';
-    document.getElementById('langLabel').textContent = isChecked ? 'English' : 'Español';
-  }
-
-  // Modo oscuro
-  function toggleDarkMode() {
-    const isDark = document.getElementById('darkSwitch').checked;
-    document.body.classList.toggle('dark-mode', isDark);
-    document.getElementById('darkLabel').textContent = isDark ? 'Modo Oscuro' : 'Modo Claro';
+  // Sonido clic
+  function playClick() {
+    const audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_1250f38b7e.mp3?filename=click-124467.mp3');
+    audio.play();
   }
 </script>
 </body>

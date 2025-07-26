@@ -17,7 +17,7 @@
       overflow: hidden;
     }
 
-    /* Fondo animado decorativo */
+    /* Fondo decorativo */
     .background-decor {
       position: fixed;
       width: 100%;
@@ -25,8 +25,8 @@
       background: linear-gradient(-45deg, #1a1a2e, #0f3460, #00ffe1, #ff0059);
       background-size: 400% 400%;
       animation: gradientBG 10s ease infinite;
-      z-index: -2;
-      filter: blur(10px);
+      z-index: -3;
+      filter: blur(8px);
     }
 
     @keyframes gradientBG {
@@ -35,6 +35,16 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Rayos */
+    .rayo {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* Partículas */
     #particles-js {
       position: fixed;
       width: 100%;
@@ -42,7 +52,7 @@
       z-index: -1;
     }
 
-    /* Zona de carga */
+    /* Precarga */
     #preloader {
       position: fixed;
       width: 100%;
@@ -54,6 +64,7 @@
       justify-content: center;
       z-index: 1000;
     }
+
     .loader-circle {
       width: 70px;
       height: 70px;
@@ -63,197 +74,320 @@
       animation: spin 1.5s linear infinite;
       margin-bottom: 20px;
     }
+
     #preloader h2 {
       color: #fff;
       font-size: 1.4rem;
       animation: fadeText 2s ease-in-out infinite;
       text-align: center;
     }
+
     @keyframes spin {
       0% { transform: rotate(0); }
       100% { transform: rotate(360deg); }
     }
+
     @keyframes fadeText {
       0%, 100% { opacity: 0.4; }
       50% { opacity: 1; }
-    }
-
-    /* Contenido principal */
-    .overlay {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      text-align: center;
-      padding: 2rem;
-      z-index: 10;
-      position: relative;
-    }
-
-    h1 {
-      font-size: 3rem;
-      color: #00ffe1;
-      text-shadow: 0 0 10px #00ffe1;
-      margin-bottom: 1.5rem;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-
-    .buttons a {
-      background: linear-gradient(135deg, #00ffe1, #ff0059);
-      padding: 1rem 1.6rem;
-      color: #000;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 50px;
-      box-shadow: 0 0 10px #00ffe1;
-      transition: 0.3s;
-    }
-
-    .buttons a:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #ff0040;
-    }
-
-    .counter-area {
-      font-size: 1rem;
-      color: #fff;
-    }
-
-    .ninja-btn {
-      position: absolute;
-      bottom: 80px;
-      right: 30px;
-      width: 70px;
-      height: 70px;
-      background: url('https://cdn-icons-png.flaticon.com/512/1055/1055646.png') no-repeat center/contain;
-      border: none;
-      cursor: pointer;
-      animation: floatNinja 2.5s ease-in-out infinite;
-    }
-
-    @keyframes floatNinja {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .star {
-      position: absolute;
-      font-size: 2rem;
-      color: gold;
-      opacity: 0;
-      transition: opacity 0.3s, transform 0.5s;
-    }
-
-    footer {
-      position: absolute;
-      bottom: 10px;
-      color: #ccc;
-      font-size: 0.85rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Fondo decorativo + partículas -->
-  <div class="background-decor"></div>
-  <div id="particles-js"></div>
+<!-- Fondo -->
+<div class="background-decor"></div>
 
-  <!-- Zona de carga -->
-  <div id="preloader">
-    <div class="loader-circle"></div>
-    <h2>⚡ Entrando al universo Kaneki Staff...</h2>
+<!-- Rayos SVG -->
+<svg class="rayo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+  <polyline points="10,10 20,30 10,50 30,70 20,90" stroke="red" stroke-width="2" fill="none">
+    <animate attributeName="stroke-opacity" values="0;1;0" dur="1.2s" repeatCount="indefinite" />
+  </polyline>
+  <polyline points="80,0 70,25 85,40 65,60 75,80" stroke="blue" stroke-width="2" fill="none">
+    <animate attributeName="stroke-opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" />
+  </polyline>
+  <polyline points="40,20 45,35 40,55 50,75 45,90" stroke="black" stroke-width="2" fill="none">
+    <animate attributeName="stroke-opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
+  </polyline>
+</svg>
+
+<!-- Partículas -->
+<div id="particles-js"></div>
+
+<!-- Precarga -->
+<div id="preloader">
+  <div class="loader-circle"></div>
+  <h2>⚡ Entrando al universo Kaneki Staff...</h2>
+</div>
+<!-- Contenido principal -->
+<div class="overlay" id="mainContent">
+  <h1>⚡ Kaneki Staff</h1>
+
+  <div class="buttons">
+    <a href="https://wa.me/1234567890?text=Hola%20KanekiBot" target="_blank">💌 Contactar</a>
+    <a href="https://chat.whatsapp.com/INVITACION-GRUPO" target="_blank">📥 Invitar</a>
+    <a href="https://whatsapp.com/channel/kaneki-channel-id" target="_blank">📺 Canal</a>
   </div>
 
-  <!-- Contenido principal -->
-  <div class="overlay" id="mainContent">
-    <h1>⚡ Kaneki Staff</h1>
-    <div class="buttons">
-      <a href="https://wa.me/1234567890?text=Hola%20KanekiBot" target="_blank">💌 Contactar</a>
-      <a href="https://chat.whatsapp.com/INVITACION-GRUPO" target="_blank">📥 Invitar</a>
-      <a href="https://whatsapp.com/channel/kaneki-channel-id" target="_blank">📺 Canal</a>
-    </div>
-    <div class="counter-area">
-      👁️ Visitas: <span id="visitorCount">0</span> &nbsp;&nbsp;|&nbsp;&nbsp; ⭐ Me gusta: <span id="likeCount">0</span>
-    </div>
-    <footer>&copy; 2025 KanekiBot — Todos los derechos reservados.</footer>
+  <div class="info-row">
+    <div>👁️ Visitas: <span id="visitorCount">0</span></div>
+    <div>⭐ Me gusta: <span id="likeCount">0</span></div>
+    <div>📅 <span id="dateTime"></span></div>
   </div>
 
-  <!-- Ninja interactivo -->
-  <button class="ninja-btn" onclick="likeNinja(event)"></button>
-  <div class="star" id="star">⭐</div>
+  <div class="vote-box">
+    <p>¿Te gustó esta página?</p>
+    <button onclick="vote('yes')">👍 Sí</button>
+    <button onclick="vote('no')">👎 No</button>
+    <div id="voteResult"></div>
+  </div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('preloader').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'flex';
-      }, 2500);
-    });
+  <div class="lang-toggle">
+    <label>
+      🌐 <input type="checkbox" id="langSwitch" onchange="switchLang()" />
+      <span id="langLabel">Español</span>
+    </label>
+  </div>
 
-    // Fondo de partículas
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 60, density: { enable: true, value_area: 800 } },
-        color: { value: ["#00ffe1", "#ff0059", "#ffffff"] },
-        shape: { type: "circle" },
-        opacity: { value: 0.6, random: true },
-        size: { value: 4, random: true },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#00ffe1",
-          opacity: 0.3,
-          width: 1
-        },
-        move: { enable: true, speed: 2 }
+  <div class="dark-toggle">
+    <label>
+      🌗 <input type="checkbox" id="darkSwitch" onchange="toggleDarkMode()" />
+      <span id="darkLabel">Modo Claro</span>
+    </label>
+  </div>
+
+  <footer>&copy; 2025 KanekiBot — Todos los derechos reservados.</footer>
+</div>
+
+<!-- Ninja interactivo -->
+<button class="ninja-btn" onclick="likeNinja(event)"></button>
+<div class="star" id="star">⭐</div>
+
+<!-- Música de fondo -->
+<audio id="bgmusic" src="https://files.catbox.moe/1k0wbo.mp3" autoplay loop></audio>
+<style>
+  .overlay {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 2rem;
+    z-index: 10;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: #00ffe1;
+    text-shadow: 0 0 10px #00ffe1;
+    margin-bottom: 1.5rem;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .buttons a {
+    background: linear-gradient(135deg, #00ffe1, #ff0059);
+    padding: 1rem 1.6rem;
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 0 10px #00ffe1;
+    transition: 0.3s;
+  }
+
+  .buttons a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff0040;
+  }
+
+  .info-row {
+    font-size: 1rem;
+    color: #fff;
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .vote-box {
+    margin: 1rem 0;
+    color: #fff;
+  }
+
+  .vote-box button {
+    margin: 0.3rem;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #fff;
+    color: #111;
+    font-weight: bold;
+  }
+
+  .vote-box #voteResult {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .lang-toggle, .dark-toggle {
+    margin: 0.5rem;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+
+  .ninja-btn {
+    position: absolute;
+    bottom: 80px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    background: url('https://cdn-icons-png.flaticon.com/512/1055/1055646.png') no-repeat center/contain;
+    border: none;
+    cursor: pointer;
+    animation: floatNinja 2.5s ease-in-out infinite;
+    z-index: 20;
+  }
+
+  @keyframes floatNinja {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .star {
+    position: absolute;
+    font-size: 2rem;
+    color: gold;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.5s;
+    z-index: 999;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 10px;
+    color: #ccc;
+    font-size: 0.85rem;
+  }
+
+  body.dark-mode {
+    background-color: #101010;
+    color: #fff;
+  }
+
+  body.dark-mode .buttons a {
+    background: linear-gradient(135deg, #222, #333);
+    color: #fff;
+  }
+</style>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  // Preload
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'flex';
+    }, 2500);
+  });
+
+  // Partículas
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 60, density: { enable: true, value_area: 800 } },
+      color: { value: ["#00ffe1", "#ff0059", "#ffffff"] },
+      shape: { type: "circle" },
+      opacity: { value: 0.6, random: true },
+      size: { value: 4, random: true },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#00ffe1",
+        opacity: 0.3,
+        width: 1
       },
-      interactivity: {
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" }
-        },
-        modes: {
-          repulse: { distance: 100 },
-          push: { particles_nb: 4 }
-        }
+      move: { enable: true, speed: 2 }
+    },
+    interactivity: {
+      events: {
+        onhover: { enable: true, mode: "repulse" },
+        onclick: { enable: true, mode: "push" }
       },
-      retina_detect: true
-    });
+      modes: {
+        repulse: { distance: 100 },
+        push: { particles_nb: 4 }
+      }
+    },
+    retina_detect: true
+  });
 
-    // Contador visitas y likes
-    let visitCount = localStorage.getItem('kaneki_visits') || 0;
-    visitCount++;
-    localStorage.setItem('kaneki_visits', visitCount);
-    document.getElementById('visitorCount').textContent = visitCount;
+  // Visitas
+  let visitCount = localStorage.getItem('kaneki_visits') || 0;
+  visitCount++;
+  localStorage.setItem('kaneki_visits', visitCount);
+  document.getElementById('visitorCount').textContent = visitCount;
 
-    let likes = localStorage.getItem('kaneki_likes') || 0;
+  // Likes
+  let likes = localStorage.getItem('kaneki_likes') || 0;
+  document.getElementById('likeCount').textContent = likes;
+
+  function likeNinja(e) {
+    likes++;
+    localStorage.setItem('kaneki_likes', likes);
     document.getElementById('likeCount').textContent = likes;
 
-    function likeNinja(e) {
-      likes++;
-      localStorage.setItem('kaneki_likes', likes);
-      document.getElementById('likeCount').textContent = likes;
+    const star = document.getElementById('star');
+    star.style.left = `${e.clientX - 10}px`;
+    star.style.top = `${e.clientY - 30}px`;
+    star.style.opacity = 1;
+    star.style.transform = 'translateY(-50px)';
+    setTimeout(() => {
+      star.style.opacity = 0;
+      star.style.transform = 'translateY(0)';
+    }, 800);
+  }
 
-      const star = document.getElementById('star');
-      star.style.left = `${e.clientX - 10}px`;
-      star.style.top = `${e.clientY - 30}px`;
-      star.style.opacity = 1;
-      star.style.transform = 'translateY(-50px)';
-      setTimeout(() => {
-        star.style.opacity = 0;
-        star.style.transform = 'translateY(0)';
-      }, 800);
-    }
-  </script>
+  // Fecha y hora en vivo
+  function updateDateTime() {
+    const now = new Date();
+    const options = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
+    document.getElementById('dateTime').textContent = now.toLocaleDateString('es-CO', options);
+  }
+  setInterval(updateDateTime, 1000);
+  updateDateTime();
+
+  // Votación
+  function vote(option) {
+    const result = document.getElementById('voteResult');
+    if (option === 'yes') result.innerHTML = '¡Gracias por tu voto positivo! 🥳';
+    else result.innerHTML = '¡Intentaremos mejorar! 💪';
+  }
+
+  // Idioma
+  function switchLang() {
+    const isChecked = document.getElementById('langSwitch').checked;
+    document.querySelector('h1').textContent = isChecked ? '⚡ Kaneki Staff' : '⚡ Kaneki Staff';
+    document.querySelector('.vote-box p').textContent = isChecked ? 'Did you like this page?' : '¿Te gustó esta página?';
+    document.getElementById('langLabel').textContent = isChecked ? 'English' : 'Español';
+  }
+
+  // Modo oscuro
+  function toggleDarkMode() {
+    const isDark = document.getElementById('darkSwitch').checked;
+    document.body.classList.toggle('dark-mode', isDark);
+    document.getElementById('darkLabel').textContent = isDark ? 'Modo Oscuro' : 'Modo Claro';
+  }
+</script>
 </body>
 </html>

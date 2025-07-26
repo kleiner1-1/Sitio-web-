@@ -1,101 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>KanekiBot - Asistente de WhatsApp</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>KanekiBot - Staff</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       height: 100%;
       font-family: 'Poppins', sans-serif;
+      background: #000;
       color: #fff;
       overflow: hidden;
-      position: relative;
     }
 
-    .video-bg {
+    /* 🌀 Preloader */
+    #preloader {
       position: fixed;
-      top: 0; left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      filter: brightness(0.3) saturate(1.2);
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
     }
 
+    #preloader h2 {
+      color: #00ffe1;
+      font-size: 1.8rem;
+      text-shadow: 0 0 15px #00ffe1;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
+    }
+
+    /* 🔥 Rayos de fondo (canvas) */
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      z-index: -2;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* 🔹 Contenido principal */
     .overlay {
-      position: relative;
-      z-index: 2;
-      display: flex;
+      display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100%;
-      text-align: center;
       padding: 2rem;
-      background: rgba(0, 0, 0, 0.5);
+      text-align: center;
+      z-index: 2;
     }
 
     h1 {
       font-size: 3rem;
       color: #00ffe1;
       text-shadow: 0 0 10px #00ffe1;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      color: #ddd;
-      margin-bottom: 2rem;
-    }
-
-    .features {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid #00ffe1;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 255, 225, 0.3);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      max-width: 600px;
-      width: 100%;
-    }
-
-    .features div {
-      margin: 0.6rem 0;
-      font-weight: 500;
-      text-align: left;
+      margin-bottom: 1.5rem;
     }
 
     .buttons {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      justify-content: center;
+      margin-bottom: 2rem;
     }
 
     .buttons a {
-      background: linear-gradient(135deg, #00ffe1, #00b3ad);
+      background: linear-gradient(135deg, #00ffe1, #ff0059);
+      padding: 1rem 1.6rem;
       color: #000;
-      padding: 0.9rem 1.5rem;
-      border-radius: 50px;
-      text-decoration: none;
       font-weight: bold;
-      transition: 0.3s ease;
+      text-decoration: none;
+      border-radius: 50px;
       box-shadow: 0 0 10px #00ffe1;
+      transition: 0.3s;
     }
 
     .buttons a:hover {
-      background: linear-gradient(135deg, #00e0cb, #00ffe1);
       transform: scale(1.05);
-      box-shadow: 0 0 15px #00ffe1;
+      box-shadow: 0 0 15px #ff0040;
     }
 
     .counter-area {
-      margin-top: 1rem;
       font-size: 1rem;
       color: #ccc;
     }
@@ -110,11 +108,6 @@
       border: none;
       cursor: pointer;
       animation: floatNinja 2.5s ease-in-out infinite;
-      transition: transform 0.2s ease;
-    }
-
-    .ninja-btn:hover {
-      transform: scale(1.1);
     }
 
     @keyframes floatNinja {
@@ -133,39 +126,29 @@
     footer {
       position: absolute;
       bottom: 10px;
+      color: #888;
       font-size: 0.85rem;
-      color: #aaa;
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2.2rem; }
-      p { font-size: 1rem; }
-      .features { padding: 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <video autoplay muted loop class="video-bg">
-    <source src="https://cdn.pixabay.com/video/2023/03/30/157947-817800710_large.mp4" type="video/mp4">
-    Tu navegador no soporta video de fondo.
-  </video>
+  <!-- ⚡ Preloader -->
+  <div id="preloader">
+    <h2>⚡ Pronto a entrar a Kaneki Staff...</h2>
+  </div>
 
-  <div class="overlay">
-    <h1>🤖 KanekiBot</h1>
-    <p>Tu asistente avanzado para WhatsApp: comandos personalizados, multimedia, protección de grupos y más.</p>
+  <!-- ⚡ Rayos en fondo -->
+  <canvas id="lightningCanvas"></canvas>
 
-    <div class="features">
-      <div>⚙️ Comandos personalizables y dinámicos</div>
-      <div>🎵 Descarga desde YouTube, TikTok y más</div>
-      <div>🛡️ Anti-bots, anti-link y seguridad</div>
-      <div>🎮 Sistema de niveles, monedas y minijuegos</div>
-    </div>
+  <!-- 🧠 Contenido -->
+  <div class="overlay" id="mainContent">
+    <h1>⚡ Kaneki Staff</h1>
 
     <div class="buttons">
-      <a href="https://wa.me/573162402768?text=Hola%20KanekiBot" target="_blank">💌 Contactar al Creador</a>
-      <a href="https://chat.whatsapp.com/JyXYAWOtXWd0VGTOHbv8EOINVITACION-DE-GRUPO" target="_blank">📥 Invitar a un Grupo</a>
-      <a href="https://whatsapp.com/channel/0029Vb63Kf9KwqSQLOQOtk3N" target="_blank">📺 Canal de Kaneki</a>
+      <a href="https://wa.me/1234567890?text=Hola%20KanekiBot" target="_blank">💌 Contactar</a>
+      <a href="https://chat.whatsapp.com/INVITACION-GRUPO" target="_blank">📥 Invitar</a>
+      <a href="https://whatsapp.com/channel/kaneki-channel-id" target="_blank">📺 Canal</a>
     </div>
 
     <div class="counter-area">
@@ -175,20 +158,27 @@
     <footer>&copy; 2025 KanekiBot — Todos los derechos reservados.</footer>
   </div>
 
-  <!-- Ninja Button -->
+  <!-- ⭐ Botón Ninja -->
   <button class="ninja-btn" onclick="likeNinja(event)"></button>
-
-  <!-- Star Animation -->
   <div class="star" id="star">⭐</div>
 
+  <!-- 🔧 Script -->
   <script>
-    // Contador de visitas
+    // Preloader
+    window.onload = function () {
+      setTimeout(() => {
+        document.getElementById('preloader').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'flex';
+      }, 2500);
+    };
+
+    // Contador visitas
     let visitCount = localStorage.getItem('kaneki_visits') || 0;
     visitCount++;
     localStorage.setItem('kaneki_visits', visitCount);
     document.getElementById('visitorCount').textContent = visitCount;
 
-    // Contador de likes
+    // Contador likes
     let likes = localStorage.getItem('kaneki_likes') || 0;
     document.getElementById('likeCount').textContent = likes;
 
@@ -207,7 +197,46 @@
         star.style.transform = 'translateY(0)';
       }, 800);
     }
-  </script>
 
+    // Animación rayos con canvas
+    const canvas = document.getElementById('lightningCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function drawLightning() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < 5; i++) {
+        const x = random(0, canvas.width);
+        const y = random(0, canvas.height / 2);
+
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        for (let j = 0; j < 10; j++) {
+          x += random(-20, 20);
+          y += random(10, 40);
+          ctx.lineTo(x, y);
+        }
+
+        const color = ['#00ffe1', '#ff0055', '#111'][Math.floor(Math.random() * 3)];
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.shadowColor = color;
+        ctx.shadowBlur = 15;
+        ctx.stroke();
+      }
+    }
+
+    setInterval(drawLightning, 250);
+    window.onresize = () => {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+    };
+  </script>
 </body>
 </html>

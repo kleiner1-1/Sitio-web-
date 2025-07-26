@@ -127,10 +127,34 @@
   </div>
 
   <div id="mainContent">
-    <h1>🎧 Bienvenido al universo KanekiBot-MD</h1>
-    <button class="ninja-btn" onclick="likeNinja(event)"></button>
-    <div class="star" id="star">⭐</div>
+  <!-- ⚡ Logo SVG animado -->
+  <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 1rem; animation: logoPulse 2s infinite;">
+    <circle cx="50" cy="50" r="45" stroke="#ff0059" stroke-width="4" fill="rgba(0,0,0,0.8)" />
+    <text x="50%" y="55%" text-anchor="middle" fill="#00ffe1" font-size="20px" font-family="Poppins" dy=".3em">KB</text>
+  </svg>
+
+  <h1>🎧 Bienvenido al universo KanekiBot-MD</h1>
+
+  <!-- 📥 Botones de acción -->
+  <div class="buttons">
+    <a href="https://wa.me/1234567890?text=Hola%20KanekiBot" target="_blank">💌 Contactar</a>
+    <a href="https://chat.whatsapp.com/INVITACION-GRUPO" target="_blank">📥 Invitar</a>
+    <a href="https://whatsapp.com/channel/kaneki-channel-id" target="_blank">📺 Canal</a>
   </div>
+
+  <!-- 📊 Contadores -->
+  <div class="counter-area">
+    👁️ Visitas: <span id="visitorCount">0</span> &nbsp;&nbsp;|&nbsp;&nbsp; ⭐ Me gusta: <span id="likeCount">0</span>
+  </div>
+
+  <!-- 🥷 Botón ninja -->
+  <button class="ninja-btn" onclick="likeNinja(event)"></button>
+  <div class="star" id="star">⭐</div>
+
+  <!-- 📄 Footer -->
+  <footer style="margin-top: 1rem; font-size: 0.85rem; color: #999;">&copy; 2025 KanekiBot — Todos los derechos reservados.</footer>
+</div>
+
 
   <audio id="mainMusic" loop></audio>
   <audio id="ninjaSound">

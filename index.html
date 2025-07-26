@@ -111,27 +111,28 @@
 <div class="overlay" id="mainContent">
   <h1>⚡ Kaneki Staff</h1>
 
-  <div class="buttons">
-  <button onclick="playClick(); window.open('https://wa.me/1234567890?text=Hola%20KanekiBot', '_blank')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  <div class="buttons-kaneki">
+  <a href="https://wa.me/1234567890?text=Hola%20KanekiBot" target="_blank" onclick="playClick()">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     💌 Contactar
-  </button>
+  </a>
 
-  <button onclick="playClick(); window.open('https://chat.whatsapp.com/INVITACION-GRUPO', '_blank')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  <a href="https://chat.whatsapp.com/INVITACION-GRUPO" target="_blank" onclick="playClick()">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     📥 Invitar
-  </button>
+  </a>
 
-  <button onclick="playClick(); window.open('https://whatsapp.com/channel/kaneki-channel-id', '_blank')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  <a href="https://whatsapp.com/channel/kaneki-channel-id" target="_blank" onclick="playClick()">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     📺 Kaneki Canal
-  </button>
+  </a>
 
-  <button onclick="playClick(); window.open('https://whatsapp.com/channel/miku-channel-id', '_blank')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  <a href="https://whatsapp.com/channel/miku-channel-id" target="_blank" onclick="playClick()">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     📢 Miku Canal
-  </button>
+  </a>
 </div>
+
 
 
   <div class="info-row">
@@ -296,6 +297,7 @@
     color: #fff;
   }
 </style>
+
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
@@ -306,6 +308,51 @@
       document.getElementById('mainContent').style.display = 'flex';
     }, 2500);
   });
+  
+  .buttons-kaneki {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.buttons-kaneki a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.8rem 1.6rem;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  background: linear-gradient(135deg, #00ffe1, #ff0059);
+  color: #111;
+  box-shadow: 0 0 12px rgba(0, 255, 225, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.buttons-kaneki a img {
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0 0 2px #fff);
+}
+
+.buttons-kaneki a:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(255, 0, 89, 0.6), 0 0 30px rgba(0, 255, 225, 0.5);
+}
+
+body.dark-mode .buttons-kaneki a {
+  background: linear-gradient(135deg, #111, #222);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .buttons-kaneki a:hover {
+  box-shadow: 0 0 20px rgba(255, 0, 89, 0.4), 0 0 30px rgba(0, 255, 225, 0.3);
+  }
+    
 
   // Partículas
   particlesJS("particles-js", {

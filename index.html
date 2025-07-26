@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>KanekiBot - Asistente de WhatsApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+    .video-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.4);
+    }
+    .overlay {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    h1 {
+      font-size: 3rem;
+      color: #00ffe1;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      color: #ccc;
+      margin-bottom: 2rem;
+    }
+    .features {
+      background: rgba(0,0,0,0.4);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      width: 100%;
+    }
+    .features div {
+      margin: 0.5rem 0;
+      text-align: left;
+    }
+    .buttons a {
+      display: block;
+      background: #00ffe1;
+      color: #000;
+      padding: 1rem;
+      margin: 0.5rem;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    .buttons a:hover {
+      background: #00d6bb;
+    }
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔹 VIDEO DE FONDO -->
+  <video autoplay muted loop class="video-bg">
+    <source src="https://cdn.pixabay.com/video/2023/03/30/157947-817800710_large.mp4" type="video/mp4">
+    Tu navegador no soporta video de fondo.
+  </video>
+
+  <div class="overlay">
+    <h1>🤖 KanekiBot</h1>
+    <p>Tu asistente avanzado para WhatsApp: comandos personalizados, multimedia, protección de grupos y más.</p>
+
+    <div class="features">
+      <div>⚙️ Comandos personalizables</div>
+      <div>🎵 Descarga desde YouTube, TikTok, etc.</div>
+      <div>🛡️ Protección anti-bots y anti-link</div>
+      <div>🎮 Sistema de niveles, monedas y juegos</div>
+    </div>
+
+    <div class="buttons">
+      <a href="https://wa.me/573162402768?text=Hola%20KanekiBot" target="_blank">💌 Contactar al Creador</a>
+      <a href="https://chat.whatsapp.com/INVITACION-DE-GRUPO" target="_blank">📥 Invitar a un Grupo</a>
+    </div>
+
+    <footer>
+      &copy; 2025 KanekiBot - Todos los derechos reservados.
+    </footer>
+  </div>
+
+</body>
+</html>

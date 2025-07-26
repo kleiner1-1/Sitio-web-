@@ -126,11 +126,16 @@
       width: 22px;
       height: 22px;
       filter: drop-shadow(0 0 2px #fff);
+      transition: transform 0.3s ease;
     }
 
     .buttons-kaneki a:hover {
       transform: scale(1.08);
       box-shadow: 0 0 20px rgba(255, 0, 89, 0.6), 0 0 30px rgba(0, 255, 225, 0.5);
+    }
+
+    .buttons-kaneki a:hover img {
+      transform: scale(1.2) rotate(5deg);
     }
 
     body.dark-mode .buttons-kaneki a {
@@ -176,19 +181,22 @@
 <div class="overlay" id="mainContent">
   <h1>⚡ Kaneki Staff</h1>
 
-  <!-- ✅ Botones nuevos -->
+  <!-- ✅ Botones con GitHub y tooltips -->
   <div class="buttons-kaneki">
-    <a href="https://wa.me/1234567890?text=Hola%20KanekiBot" target="_blank" onclick="playClick()">
+    <a href="https://wa.me/1234567890?text=Hola%20KanekiBot" target="_blank" onclick="playClick()" title="Contacta a KanekiBot por WhatsApp">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 💌 Contactar
     </a>
-    <a href="https://chat.whatsapp.com/INVITACION-GRUPO" target="_blank" onclick="playClick()">
+    <a href="https://chat.whatsapp.com/INVITACION-GRUPO" target="_blank" onclick="playClick()" title="Únete al grupo de WhatsApp">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 📥 Invitar
     </a>
-    <a href="https://whatsapp.com/channel/kaneki-channel-id" target="_blank" onclick="playClick()">
+    <a href="https://whatsapp.com/channel/kaneki-channel-id" target="_blank" onclick="playClick()" title="Canal de WhatsApp de Kaneki">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 📺 Kaneki Canal
     </a>
-    <a href="https://whatsapp.com/channel/miku-channel-id" target="_blank" onclick="playClick()">
+    <a href="https://whatsapp.com/channel/miku-channel-id" target="_blank" onclick="playClick()" title="Canal de WhatsApp de Miku">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 📢 Miku Canal
+    </a>
+    <a href="https://github.com/TU_USUARIO" target="_blank" onclick="playClick()" title="Explora el GitHub de Kaneki">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"> 🧠 Visita mi GitHub
     </a>
   </div>
 
@@ -204,7 +212,6 @@
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-  // Precarga
   window.addEventListener('load', () => {
     setTimeout(() => {
       document.getElementById('preloader').style.display = 'none';
@@ -212,7 +219,6 @@
     }, 2500);
   });
 
-  // Partículas
   particlesJS("particles-js", {
     particles: {
       number: { value: 60, density: { enable: true, value_area: 800 } },
@@ -242,17 +248,14 @@
     retina_detect: true
   });
 
-  // Visitas
   let visitCount = localStorage.getItem('kaneki_visits') || 0;
   visitCount++;
   localStorage.setItem('kaneki_visits', visitCount);
   document.getElementById('visitorCount').textContent = visitCount;
 
-  // Likes
   let likes = localStorage.getItem('kaneki_likes') || 0;
   document.getElementById('likeCount').textContent = likes;
 
-  // Fecha y hora
   function updateDateTime() {
     const now = new Date();
     const options = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
@@ -261,7 +264,6 @@
   setInterval(updateDateTime, 1000);
   updateDateTime();
 
-  // Sonido clic
   function playClick() {
     const audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_1250f38b7e.mp3?filename=click-124467.mp3');
     audio.play();

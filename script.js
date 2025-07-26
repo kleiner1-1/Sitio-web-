@@ -90,7 +90,7 @@ function initCountersAndPreferences() {
 
     switchLang(true);
 }
-
+//puto el que me lea :>
 function animateCounter(element, target, duration) {
     let start = 0;
     const increment = Math.ceil(target / (duration / 20));

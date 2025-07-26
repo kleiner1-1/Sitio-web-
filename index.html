@@ -11,8 +11,11 @@
       height: 100%;
       font-family: 'Poppins', sans-serif;
       background: #000;
-      color: #fff;
       overflow: hidden;
+    }
+
+    body {
+      color: #fff;
     }
 
     #preloader {
@@ -40,13 +43,12 @@
       100% { opacity: 0.4; }
     }
 
-    canvas {
+    #particles-js {
       position: fixed;
-      top: 0; left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
       background: #000;
+      z-index: -1;
     }
 
     .overlay {
@@ -55,8 +57,8 @@
       align-items: center;
       justify-content: center;
       height: 100%;
-      padding: 2rem;
       text-align: center;
+      padding: 2rem;
       z-index: 2;
     }
 
@@ -131,12 +133,15 @@
 </head>
 <body>
 
+  <!-- 🌌 Fondo animado -->
+  <div id="particles-js"></div>
+
+  <!-- ⏳ Zona de carga -->
   <div id="preloader">
     <h2>⚡ Pronto a entrar a Kaneki Staff...</h2>
   </div>
 
-  <canvas id="lightningCanvas"></canvas>
-
+  <!-- 👁️ Contenido principal -->
   <div class="overlay" id="mainContent">
     <h1>⚡ Kaneki Staff</h1>
 
@@ -153,11 +158,38 @@
     <footer>&copy; 2025 KanekiBot — Todos los derechos reservados.</footer>
   </div>
 
+  <!-- 🥷 Botón Ninja -->
   <button class="ninja-btn" onclick="likeNinja(event)"></button>
   <div class="star" id="star">⭐</div>
 
+  <!-- 🧠 Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // Mostrar contenido después de precarga
+    // Partículas
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": ["#00ffe1", "#ff003c", "#ffffff"] },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.6, "random": true },
+        "size": { "value": 3, "random": true },
+        "line_linked": { "enable": true, "distance": 100, "color": "#666", "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 1.5 }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "repulse": { "distance": 100 },
+          "push": { "particles_nb": 2 }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Precarga
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('preloader').style.display = 'none';
@@ -165,13 +197,12 @@
       }, 2500);
     });
 
-    // Contador de visitas
+    // Contadores
     let visitCount = localStorage.getItem('kaneki_visits') || 0;
     visitCount++;
     localStorage.setItem('kaneki_visits', visitCount);
     document.getElementById('visitorCount').textContent = visitCount;
 
-    // Likes
     let likes = localStorage.getItem('kaneki_likes') || 0;
     document.getElementById('likeCount').textContent = likes;
 
@@ -190,49 +221,7 @@
         star.style.transform = 'translateY(0)';
       }, 800);
     }
-
-    // Fondo rayos (canvas)
-    const canvas = document.getElementById("lightningCanvas");
-    const ctx = canvas.getContext("2d");
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    function drawRay(x, y, length, angle, color) {
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      for (let i = 0; i < length; i++) {
-        x += Math.cos(angle + (Math.random() - 0.5)) * 10;
-        y += Math.sin(angle + (Math.random() - 0.5)) * 10;
-        ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 2;
-      ctx.shadowColor = color;
-      ctx.shadowBlur = 15;
-      ctx.stroke();
-    }
-
-    function animateLightning() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const colors = ['#00ffe1', '#ff003c', '#222'];
-
-      for (let i = 0; i < 4; i++) {
-        const x = Math.random() * canvas.width;
-        const angle = Math.PI / 2;
-        drawRay(x, 0, 10 + Math.random() * 5, angle, colors[Math.floor(Math.random() * colors.length)]);
-      }
-
-      requestAnimationFrame(animateLightning);
-    }
-
-    animateLightning();
   </script>
+
 </body>
 </html>
